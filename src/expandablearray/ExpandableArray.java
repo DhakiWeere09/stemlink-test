@@ -20,7 +20,7 @@ public class ExpandableArray {
 
     public ExpandableArray(int length) {
         this.arrayLength = length;
-        arrayObject = new String[this.arrayLength];
+        arrayObject = new Object[this.arrayLength];
 
         System.out.println("Created array lengthy.. " + this);
     }
