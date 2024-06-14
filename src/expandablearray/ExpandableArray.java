@@ -13,7 +13,8 @@ public class ExpandableArray {
 
     // Constructors
     public ExpandableArray() {
-        arrayObject = new String[ExpandableArray.DEFAULT_LENGTH];
+        this.arrayLength = ExpandableArray.DEFAULT_LENGTH;
+        arrayObject = new Object[arrayLength];
 
         System.out.println("Created array " + this);
     }
@@ -81,7 +82,7 @@ public class ExpandableArray {
         for (int i = 0; i < arrayObject.length; i++) {
             System.out.printf("%d : %s\n", i + 1, arrayObject[i]);
         }
-        System.out.println("-------------------------------------\n\n");
+        System.out.println("-------------------------------------\n");
     }
 
     public static void main(String[] args) {
@@ -91,32 +92,26 @@ public class ExpandableArray {
         ea.add("kasun");
         ea.add(true);
         ea.add(4.5);
-
         ea.showElements();
 
         ea.add("the sixth man");
-
         ea.showElements();
 
-        ea.add("the 7");
+        ea.add("the 7th");
         ea.add("8th thing");
         ea.add("9 element");
         ea.add("10th element");
-
         ea.showElements();
+
+        System.out.println("the value at index 7 :  " + ea.get(7));
 
         ea.add("the magic 11th");
-
         ea.showElements();
 
-        System.out.println(ea.get(7));
-
         ea.remove(6);
-
         ea.showElements();
 
         ea.add(11.11);
-
         ea.showElements();
 
 
