@@ -18,6 +18,7 @@ public class ExpandableArray {
     int arrayType;
     String[] arrayObject;
 
+    // Constructors
     private ExpandableArray() {
         arrayObject = new String[ExpandableArray.DEFAULT_LENGTH];
 
@@ -31,7 +32,8 @@ public class ExpandableArray {
         System.out.println("Created array lengthy.. " + this);
     }
 
-    // Basic add function Functions
+
+    // Basic ADD functions
     public int add(String element) {
         if (indexPointerLocation <= arrayLength) {
             arrayObject[indexPointerLocation - 1] = element;
@@ -57,7 +59,7 @@ public class ExpandableArray {
 
     }
 
-    // basic get method
+    // Basic GET method
     public String get(int index) {
         if (index < indexPointerLocation) {
             return arrayObject[index - 1];
@@ -67,7 +69,7 @@ public class ExpandableArray {
         }
     }
 
-    //basic show method
+    //Basic SHOW method
     public void showElements() {
         System.out.println("------------------------------------");
         for (int i = 0; i < arrayObject.length; i++) {
