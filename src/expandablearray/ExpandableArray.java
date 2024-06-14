@@ -12,13 +12,13 @@ public class ExpandableArray {
     Object[] arrayObject;
 
     // Constructors
-    private ExpandableArray() {
+    public ExpandableArray() {
         arrayObject = new String[ExpandableArray.DEFAULT_LENGTH];
 
         System.out.println("Created array " + this);
     }
 
-    private ExpandableArray(int length) {
+    public ExpandableArray(int length) {
         this.arrayLength = length;
         arrayObject = new String[this.arrayLength];
 
