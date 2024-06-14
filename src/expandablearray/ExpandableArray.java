@@ -2,21 +2,14 @@ package expandablearray;
 
 public class ExpandableArray {
 
-    // Type Variables
-    static final int TYPE_OBJECT = 0;
-    static final int TYPE_STRING = 1;
-    static final int TYPE_INTEGER = 2;
-
     // Default values
     static final int DEFAULT_LENGTH = 10;
-    static final int DEFAULT_TYPE = ExpandableArray.TYPE_STRING;
-    static final double DEFAULT_EXPANSION_MULTIPLIER = 2.0;
+    static final double DEFAULT_EXPANSION_MULTIPLIER = 1.5;
 
     // array variables
     int arrayLength;
     int indexPointerLocation = 1;
-    int arrayType;
-    String[] arrayObject;
+    Object[] arrayObject;
 
     // Constructors
     private ExpandableArray() {
@@ -34,16 +27,17 @@ public class ExpandableArray {
 
 
     // Basic ADD functions
-    public int add(String element) {
+    public int add(Object element) {
         if (indexPointerLocation <= arrayLength) {
-            arrayObject[indexPointerLocation - 1] = element;
+
+            arrayObject[indexPointerLocation - 1] = element.toString();
             indexPointerLocation++;
-            System.out.printf("\nElement [%s] has been added to the Array. capacity %d/%d\n-----------------------------------", element,indexPointerLocation-1, arrayLength);
+            System.out.printf("\nElement [%s] has been added to the Array. capacity %d/%d\n-----------------------------------\n", element,indexPointerLocation-1, arrayLength);
             return 1;
 
         } else {
             arrayLength = (int) (arrayLength * DEFAULT_EXPANSION_MULTIPLIER);
-            String[] newArray = new String[arrayLength];
+            Object[] newArray = new Object[arrayLength];
             for (int i = 0; i < arrayObject.length; i++) {
                 newArray[i] = arrayObject[i];
             }
@@ -60,13 +54,25 @@ public class ExpandableArray {
     }
 
     // Basic GET method
-    public String get(int index) {
+    public Object get(int index) {
         if (index < indexPointerLocation) {
             return arrayObject[index - 1];
 
         } else {
             return null;
         }
+    }
+
+    // Basic REMOVE method
+    public void remove(int index){
+        Object remElement = arrayObject[index-1];
+        for (int i = index; i < indexPointerLocation; i++) {
+            arrayObject[i-1] = arrayObject[i];
+        }
+        indexPointerLocation--;
+
+        System.out.printf("\nElement [%s] at index (%d) has been removed from the Array. capacity %d/%d\n-----------------------------------\n",
+                remElement.toString(), index, indexPointerLocation-1, arrayLength);
     }
 
     //Basic SHOW method
@@ -81,10 +87,10 @@ public class ExpandableArray {
     public static void main(String[] args) {
         ExpandableArray ea = new ExpandableArray(5);
         ea.add("dhanika");
-        ea.add("sdfasd");
+        ea.add(2);
         ea.add("kasun");
-        ea.add("sujith");
-        ea.add("kamara");
+        ea.add(true);
+        ea.add(4.5);
 
         ea.showElements();
 
@@ -100,6 +106,16 @@ public class ExpandableArray {
         ea.showElements();
 
         ea.add("the magic 11th");
+
+        ea.showElements();
+
+        System.out.println(ea.get(7));
+
+        ea.remove(6);
+
+        ea.showElements();
+
+        ea.add(11.11);
 
         ea.showElements();
 
